@@ -57,12 +57,12 @@ def process_files(params: dict[str, Any]):
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser(description="Performs HEAD HTTP request to URLs from a list, "
-                                        "and filters URL by specified HTTP status code(s). "
+    parser = ArgumentParser(description="Performs HEAD HTTP requests to URLs from a list "
+                                        "and filters URLs by specified HTTP status code(s). "
                                         "A file should contain one URL per line.")
     parser.add_argument("files", metavar="file", default="-", nargs="+", help="Files to process or '-' for stdin.")
     parser.add_argument("-d", "--delay", metavar="delay", dest="delay", default=0, type=int,
-                        help="Delay between requests. Default is 0.")
+                        help="Delay between requests in seconds. Default is 0.")
     cgroup = parser.add_mutually_exclusive_group()
     cgroup.add_argument("-c", "--http-codes", metavar="codes", dest="http_codes", default="200",
                         help="HTTP status codes to filter. Default is 200. Several codes can be separated by commas.")
