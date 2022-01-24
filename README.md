@@ -5,6 +5,7 @@ This script performs HEAD HTTP requests to URLs from a list and filters URLs by 
 A list of URLs (one URL per line) can be taken either from a file (or several files) or stdin. Outputs to stdout.
 
 Requires Python 3.9+, all dependencies are built-in.
+For Python v.3.6-3.8 see branch `3.8`.
 
 ### Usage
 

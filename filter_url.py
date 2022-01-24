@@ -7,7 +7,7 @@ from time import sleep
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 from urllib.parse import urlparse, quote, ParseResult
-from typing import Union, Any
+from typing import Union, Any, Set, Dict
 
 
 def process(url: str) -> str:
@@ -30,12 +30,12 @@ def check_url(url: str) -> Union[ParseResult, bool]:
     return u if u.scheme in ["http", "https"] else False
 
 
-def check_code(code: str, codes: set[str], exclude: bool) -> bool:
+def check_code(code: str, codes: Set[str], exclude: bool) -> bool:
     return (code not in codes) if exclude \
         else (code in codes)
 
 
-def process_file(file: str, codes: set[str], exclude: bool, delay: int):
+def process_file(file: str, codes: Set[str], exclude: bool, delay: int):
     try:
         with input(file) as f:
             for line in f:
@@ -50,7 +50,7 @@ def process_file(file: str, codes: set[str], exclude: bool, delay: int):
         print("Permission denied: " + e.filename, file=stderr)
 
 
-def process_files(params: dict[str, Any]):
+def process_files(params: Dict[str, Any]):
     for file in params['files']:
         if Path(file).is_file() or file == '-':
             process_file(file, params['codes'], params['exclude'], params['delay'])
